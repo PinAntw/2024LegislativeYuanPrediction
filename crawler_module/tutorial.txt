@@ -1,0 +1,42 @@
+【Facebook 爬蟲教學 - 執行 crawler_script.py 前完整準備流程】
+
+步驟 1：安裝必要套件
+--------------------------
+請先確保你已安裝 Python 3（推薦 Python 3.8 以上版本），並在終端機執行以下指令安裝所需套件：
+
+pip install selenium pandas
+
+
+
+步驟 2：安裝 ChromeDriver
+--------------------------
+本程式需使用 ChromeDriver 控制瀏覽器，請依照下列方式安裝：
+
+1. 先查詢你的 Chrome 瀏覽器版本（在網址列輸入：chrome://settings/help）
+2. 前往 https://chromedriver.chromium.org/downloads
+3. 下載與你的 Chrome 相容版本，解壓後將 chromedriver 檔案放到主目錄或程式資料夾內
+
+
+步驟 3：啟動 Chrome 並登入 Facebook
+--------------------------
+使用 remote debugging 模式啟動 Chrome：
+
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir="/tmp/chrome_debug"
+
+開啟後會跳出一個新的 Chrome 視窗，請在此視窗中登入你的 Facebook 帳號。
+
+⚠️ 注意：請不要關閉這個 Chrome 視窗，爬蟲執行過程會透過它操作臉書網頁。
+
+
+步驟 4：執行爬蟲程式 crawler_script.py
+--------------------------
+確認 election.csv 檔案（用於抓名單，格式欄位要符合）已準備好，且在程式所在資料夾中。
+
+執行主程式：
+
+python3 crawler_script.py
+
+執行後會顯示追蹤過程的紀錄訊息，完成後會產生以下檔案：
+
+- follow.csv：每位候選人追蹤的粉專與對象列表
+- crawler_log.txt：過程中的操作與錯誤記錄
